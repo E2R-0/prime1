@@ -1,0 +1,78 @@
+-- ═══════════════════════════════════════
+--   👑 PRIME TEST SCRIPT
+--   أول سكربت لك على GitHub
+-- ═══════════════════════════════════════
+
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "👑 PRIME TEST",
+    LoadingTitle = "PRIME",
+    LoadingSubtitle = "First Script",
+    Theme = "Amethyst",
+    ToggleUIKeybind = "RightShift",
+    KeySystem = false,
+})
+
+local Tab = Window:CreateTab("🏠 الرئيسية", "home")
+
+Tab:CreateSection("👋 مرحباً")
+
+Tab:CreateParagraph({
+    Title = "👑 PRIME",
+    Content = "هذا أول سكربت لك على GitHub!\nمبروك 🎉",
+})
+
+Tab:CreateSection("⚡ أدوات تجريبية")
+
+Tab:CreateSlider({
+    Name = "🏃 السرعة",
+    Range = {16, 500},
+    Increment = 1,
+    Suffix = "studs",
+    CurrentValue = 16,
+    Flag = "Speed",
+    Callback = function(v)
+        local char = game.Players.LocalPlayer.Character
+        if char then
+            local hum = char:FindFirstChildOfClass("Humanoid")
+            if hum then hum.WalkSpeed = v end
+        end
+    end,
+})
+
+Tab:CreateButton({
+    Name = "💀 قتل الكل",
+    Callback = function()
+        for _, plr in ipairs(game.Players:GetPlayers()) do
+            if plr ~= game.Players.LocalPlayer and plr.Character then
+                local hum = plr.Character:FindFirstChildOfClass("Humanoid")
+                if hum then hum.Health = 0 end
+            end
+        end
+        Rayfield:Notify({Title = "💀", Content = "تم!", Duration = 3})
+    end,
+})
+
+Tab:CreateButton({
+    Name = "🛡️ God Mode",
+    Callback = function()
+        local char = game.Players.LocalPlayer.Character
+        if char then
+            local hum = char:FindFirstChildOfClass("Humanoid")
+            if hum then
+                hum.MaxHealth = math.huge
+                hum.Health = math.huge
+            end
+        end
+        Rayfield:Notify({Title = "🛡️", Content = "تم!", Duration = 3})
+    end,
+})
+
+Rayfield:Notify({
+    Title = "👑 PRIME",
+    Content = "تم التحميل من GitHub!",
+    Duration = 5,
+})
+
+print("✅ Prime Test Script Loaded")
